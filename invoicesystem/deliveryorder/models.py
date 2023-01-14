@@ -5,16 +5,25 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 class Item(models.Model):
     itemID = models.AutoField(unique=True,primary_key=True)
-    itemPrice = models.IntegerField
+    itemPrice = models.DecimalField(default=0,max_digits=19,decimal_places=2)
     itemDescription = models.CharField(max_length=30)
-
     def __str__(self):
-        return self.itemDescription
+        string = str("{:04d}".format(self.itemID))
+        return string
 
     def item_price(self):
-        return self.itemPrice
+        string = 'RM'+ str(self.itemPrice)
+        return string
+    
+    def item_id(self):
+        string = str("{:04d}".format(self.itemID))
+        return string
 
-class DeliveryOrder(models.Model):
+    def save(self):
+        self.itemDescription = self.itemDescription.upper()
+        super().save()
+
+class DeliveryOrderForm(models.Model):
     deliveryOrderID = models.AutoField(unique=True,primary_key=True)
     vendorName = models.CharField(max_length=30)
     vendorAddress = models.CharField(max_length=200)
@@ -24,6 +33,33 @@ class DeliveryOrder(models.Model):
     deliveryOrderStatus = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.vendorName + ' ' + self.deliveryOrderID
+        string = 'ID : ' + str(self.deliveryOrderID) + ' - ' + self.vendorName
+        return string
+
+    def vendor_name(self):
+        return self.vendorName
     
+    def save(self):
+        self.vendorName = self.vendorName.upper()
+        self.vendorAddress = self.vendorAddress.upper()
+        self.recipientName = self.recipientName.upper()
+        self.recipientAddress = self.recipientAddress.upper()
+        super().save()
+
+class TableList(models.Model):
+    deliveryOrderID = models.ForeignKey(DeliveryOrderForm,on_delete = models.CASCADE)
+    itemID = models.ForeignKey(Item,on_delete=models.PROTECT)
+    itemQuantity = models.IntegerField(default=0)
+
+    def __str__(self):
+        string = str(self.deliveryOrderID)+' '+str(self.itemID) + '-'+ str(self.itemQuantity)
+        return string
+    
+    def item_ID(self):
+        return self.itemID
+
+    def item_description(self):
+        return self.itemID.itemDescription
+
+
 

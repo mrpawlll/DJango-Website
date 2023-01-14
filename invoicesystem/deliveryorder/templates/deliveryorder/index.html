@@ -1,0 +1,22 @@
+<html>
+<head>
+<title> Questions list</title>
+</head>
+<body>
+{% if deliveryOrderList %}
+<ul>
+    {% for deliveryOrder in deliveryOrderList %}
+    <li><a href="/deliveryorder/{{deliveryOrder.deliveryOrderID}}/">Delivery Order ID {{deliveryOrder.deliveryOrderID}}:  {{deliveryOrder.vendorName}}</a>
+    {% comment %} <li><a href="/deliveryorder/{{deliveryOrder.id}}/">Delivery Order ID {{deliveryOrder.deliveryOrderID}}:  {{deliveryOrder.vendorName}}</a> {% endcomment %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+<p>Delivery order forms are unavailable</p>
+{% endif %}
+
+</body>
+</html>
+
+
