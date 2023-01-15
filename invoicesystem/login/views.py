@@ -8,7 +8,7 @@ class MyLoginView(LoginView):
     redirect_authenticated_user = True
     
     def get_success_url(self):
-        return reverse_lazy('login:menu')
+        return reverse_lazy('login:homepage')
     
     def form_invalid(self, form):
         messages.error(self.request,'Invalid username or password')
@@ -16,7 +16,7 @@ class MyLoginView(LoginView):
 
 
 class HomePageView(TemplateView):
-    template_name = "homepage/home.html"
+    template_name = "homepage/homepage.html"
 
 class MenuPageView(TemplateView):
     template_name = "homepage/menu.html"

@@ -34,6 +34,8 @@ LOGOUT_REDIRECT_URL = '../'
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = 'static/'
+
 INSTALLED_APPS = [
     'deliveryorder.apps.DeliveryorderConfig',
     'invoice.apps.InvoiceConfig',
