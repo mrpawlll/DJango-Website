@@ -10,7 +10,10 @@ from .models import DeliveryOrderForm, TableList
 # Create your views here.
 def index(request):
     deliveryOrderList = get_list_or_404(DeliveryOrderForm.objects.filter())
-    context = {'deliveryOrderList' : deliveryOrderList}
+
+    context = {
+    'deliveryOrderList' : deliveryOrderList
+    }
     return render(request,'deliveryorder/index.html',context)
 
 def details(request,deliveryOrderID):

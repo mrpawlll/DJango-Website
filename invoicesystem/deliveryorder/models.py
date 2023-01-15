@@ -1,5 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from django.utils import timezone
+
 
 
 # Create your models here.
@@ -23,6 +25,12 @@ class Item(models.Model):
         self.itemDescription = self.itemDescription.upper()
         super().save()
 
+#deliveryorder status
+class Status(models.IntegerChoices):
+    pending = 1
+    disapproved = 2
+    approved = 3
+
 class DeliveryOrderForm(models.Model):
     deliveryOrderID = models.AutoField(unique=True,primary_key=True)
     vendorName = models.CharField(max_length=30)
@@ -30,14 +38,33 @@ class DeliveryOrderForm(models.Model):
     recipientName = models.CharField(max_length=30)
     recipientPhone = PhoneNumberField(blank=False)
     recipientAddress = models.CharField(max_length=200)
-    deliveryOrderStatus = models.BooleanField(default=False)
+    deliveryOrderStatus = models.IntegerField(default=Status.pending,choices=Status.choices)
+    deliveryOrderDate = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        string = 'ID : ' + str(self.deliveryOrderID) + ' - ' + self.vendorName
+        string = 'ID : ' + str(self.deliveryOrderID) + ' - ' + self.recipientName
         return string
+
+    def id(self):
+        string = str("{:04d}".format(self.deliveryOrderID))
+        return string
+    
+    def date(self):
+        date = self.deliveryOrderDate.date()
+        return date.strftime("%B %d %Y")    
 
     def vendor_name(self):
         return self.vendorName
+    
+    def status(self):
+        status = self.deliveryOrderStatus
+        if status == 2:
+            status = "Approved"
+        elif status == 1:
+            status = "Disapproved"
+        else:
+            status = "Pending"
+        return status
     
     def save(self):
         self.vendorName = self.vendorName.upper()

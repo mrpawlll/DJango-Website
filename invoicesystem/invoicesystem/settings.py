@@ -30,10 +30,16 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+LOGOUT_REDIRECT_URL = '../login'
+
+STATIC_URL = 'static/'
+STATIC_ROOT = "static/"
+
 INSTALLED_APPS = [
     'deliveryorder.apps.DeliveryorderConfig',
     'invoice.apps.InvoiceConfig',
     'login.apps.LoginConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
