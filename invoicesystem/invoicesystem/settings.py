@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-LOGOUT_REDIRECT_URL = '../login'
+LOGOUT_REDIRECT_URL = '../'
 
 STATIC_URL = 'static/'
 STATIC_ROOT = "static/"
