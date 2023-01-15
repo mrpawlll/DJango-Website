@@ -23,4 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('deliveryorder/',include('deliveryorder.urls')),
     path('',include('login.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
