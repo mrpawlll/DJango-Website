@@ -32,8 +32,9 @@ ALLOWED_HOSTS = []
 
 LOGOUT_REDIRECT_URL = '../'
 
+STATIC_ROOT = 'static/'
+
 STATIC_URL = 'static/'
-STATIC_ROOT = "static/"
 
 INSTALLED_APPS = [
     'deliveryorder.apps.DeliveryorderConfig',

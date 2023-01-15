@@ -10,7 +10,7 @@ class TableListInline(admin.TabularInline):
 
 class DeliveryOrderAdmin(admin.ModelAdmin):
     fieldsets=[
-        ('Delivery Order Details', {'fields' :['vendorName','vendorAddress','recipientName','recipientAddress','recipientPhone','deliveryOrderDate'] })
+        ('Delivery Order Details', {'fields' :['vendorName','vendorAddress','recipientName','recipientAddress','recipientPhone','deliveryOrderDate','deliveryOrderStatus'] })
     ]
     inlines = [TableListInline]
 

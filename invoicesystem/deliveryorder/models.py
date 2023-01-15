@@ -58,9 +58,9 @@ class DeliveryOrderForm(models.Model):
     
     def status(self):
         status = self.deliveryOrderStatus
-        if status == 2:
+        if status == 3:
             status = "Approved"
-        elif status == 1:
+        elif status == 2:
             status = "Disapproved"
         else:
             status = "Pending"
