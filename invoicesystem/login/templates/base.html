@@ -17,13 +17,12 @@
           {% if user.is_authenticated%}
           <a href="{% url 'login:logout' %}" class = "d-flex flex-row-reverse">Logout </a>
           {%endif %}
+          
         </div>
     </nav>
-
-{%block cannotaccess%}{%endblock cannotaccess%}
-
-{%block content%}{%endblock content%}
-
+<div id = "content">
+{%block content%}{%endblock%}
+</div>
 
 </body>
 </html>
