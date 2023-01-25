@@ -70,25 +70,6 @@ class DeliveryOrderForm(models.Model):
             status = "Pending"
         return status
     
-    # class Meta:
-    #     permissions = [
-    #         (
-    #             "add_deliveryorderform",
-    #             "Can add delivery order form"
-    #             ), 
-    #         (
-    #             "change_deliveryorderform",
-    #             "Can change delivery order form"
-    #             ), 
-    #         (
-    #             "delete_deliveryorderform",
-    #             "Can delete delivery order form"
-    #             ),
-    #         (
-    #             "view_deliveryorderform",
-    #             "Can view delivery order form"
-    #             ),
-    #     ]
         
     
     def save(self):
