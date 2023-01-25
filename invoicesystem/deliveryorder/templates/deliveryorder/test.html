@@ -1,0 +1,84 @@
+<form action = "" method = "post">
+    {% csrf_token %}
+        <div class="page-content container">
+            <div class="page-header text-blue-d2">
+                <h1 class="page-title text-secondary-d1">
+                    Delivery Order
+                    <small class="page-info">
+                        <i class="fa fa-angle-double-right text-80"></i>
+                        ID: #{{deliveryOrderID.nextid}}
+                    </small>
+                </h1>
+            </div>
+        
+            <div class="container px-0">
+                <div class="row mt-4">
+                    <div class="col-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="text-center text-150">
+                                    <i class="fa fa-book fa-2x text-success-m2 mr-1"></i>
+                                    <span class="text-default-d3">ABC System</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .row -->
+        
+                        <hr class="row brc-default-l1 mx-n1 mb-4" />
+        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div>
+                                    <!-- RECIPIENT ADDRESS -->
+                                    <span class="text-sm text-grey-m2 align-middle">To:</span><br>
+                                    <span class="text-600 text-110 text-blue align-middle"><input type = "text" ></span>
+                                </div>
+                                <div class="text-grey-m2">
+                                    <div class="my-1 align-middle">
+                                    {{form.recipientAddress}}
+                                    </div>
+                                    <div class="my-1">
+                                    <span class="text-sm text-grey-m2 align-middle">Phone No. :</span>
+                                    <i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600">{{form.recipientPhone}}</b></div>
+                                    </div>
+                            </div>
+                            <!-- /.col -->
+        
+                            <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                                <hr class="d-sm-none" />
+                                <div class="text-grey-m2">
+                                    <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                        Delivery Order
+                                    </div>
+        
+                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span>{{form.deliveryOrderID}}</div>
+        
+                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> {{form.deliveryOrderDate}}</div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <div class="mt-4">
+                            <div class="row text-600 text-white bgc-default-tp1 py-25">
+                                <div class="d-none d-sm-block col-sm-1">#</div>
+                                <div class="col-9 col-sm-2">ItemID</div>
+                                <div class="d-none d-sm-block  col-sm-7">Item Description</div>
+                                <div class="d-none d-sm-block col-sm-2">Quantity</div>
+                            </div>
+                            <!-- row for input -->
+                            <div class="text-95 text-secondary-d3">
+                                <div class="row mb-2 mb-sm-0 py-25">
+                                    <div class="d-none d-sm-block col-sm-1">1. </div>
+                                    <div class="col-9 col-sm-2">{{form.TableList.itemID}}</div>
+                                    <div class="d-none d-sm-block col-sm-7">{{form.TableList.Item.itemDescription}}</div>
+                                    <div class="d-none d-sm-block col-sm-2 ">{{form.TableList.itemQuantity}}</div>
+                                </div>
+                            </div>    
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type = "submit" name = "Submit">
+    </form>

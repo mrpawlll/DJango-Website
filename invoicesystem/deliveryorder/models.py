@@ -48,6 +48,10 @@ class DeliveryOrderForm(models.Model):
     def id(self):
         string = str("{:04d}".format(self.deliveryOrderID))
         return string
+
+    def nextid(self):
+        string = str("{:04d}".format(self.deliveryOrderID+1))
+        return string
     
     def date(self):
         date = self.deliveryOrderDate.date()

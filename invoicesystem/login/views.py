@@ -24,6 +24,6 @@ class MenuPageView(LoginRequiredMixin,TemplateView):
         login_url = reverse_lazy('login:login')
         return login_url
 
-class NoAccessView(LoginRequiredMixin,TemplateView):
+class NoAccessView(TemplateView):
     template_name="homepage/noaccess.html"
     login_url = reverse_lazy('login:noaccess')
