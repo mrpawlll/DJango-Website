@@ -23,10 +23,12 @@ def index(request):
     }
     return render(request,'deliveryorder/index.html',context)
 
+@login_required
 def details(request,deliveryOrderID):
     deliveryOrderID = get_object_or_404(DeliveryOrderForm,pk = deliveryOrderID)
     return render(request,'deliveryorder/details.html',{'deliveryOrderID':deliveryOrderID})
 
+@login_required
 def createDeliveryOrder(request):
     submitted = False
     deliveryOrderID = DeliveryOrderForm.objects.order_by('-deliveryOrderID')[:1]
@@ -64,6 +66,7 @@ def approveDeliveryOrderList(request):
     }
     return render(request,'deliveryorder/index.html',context)
 
+@login_required
 def approveDetails(request,deliveryOrderID):
     submitted = False
     template_name = 'deliveryorder/approvedeliveryorder.html'
@@ -82,12 +85,14 @@ def approveDetails(request,deliveryOrderID):
 
     context= {
             'submitted':submitted,
-            'form':form
+            'form':form,
+            'deliveryOrderID':delivery
         }
 
     return render(request,template_name,context)
 
 
+@login_required
 def approveInvoiceList(request):
 
     deliveryOrderList = list(DeliveryOrderForm.objects.filter(invoiceStatus=1,invoiceCreated=True))
@@ -97,6 +102,7 @@ def approveInvoiceList(request):
     }
     return render(request,'deliveryorder/indexinvoice.html',context)
 
+@login_required
 def approveInvoice(request,deliveryOrderID):
     submitted = False
     template_name = 'deliveryorder/approveinvoice.html'
@@ -115,7 +121,8 @@ def approveInvoice(request,deliveryOrderID):
 
     context= {
             'submitted':submitted,
-            'form':form
+            'form':form,
+            'deliveryOrderID':delivery
         }
 
     return render(request,template_name,context)
@@ -135,6 +142,7 @@ def courierDeliveryOrderList(request):
     }
     return render(request,'deliveryorder/index.html',context)
 
+@login_required
 def courierDetails(request,deliveryOrderID):
     submitted = False
     template_name = 'deliveryorder/updateCourierDeliveryOrder.html'
@@ -164,7 +172,6 @@ def courierDetails(request,deliveryOrderID):
 #finance office
 @login_required
 @permission_required('deliveryorder.view_deliveryorderform',raise_exception=True)
-
     #courier approved
 def financeDeliveryOrderList(request):
     deliveryOrderList = list(DeliveryOrderForm.objects.filter(courierStatus=3,invoiceCreated=False))
@@ -173,6 +180,7 @@ def financeDeliveryOrderList(request):
     }
     return render(request,'deliveryorder/index.html',context)
 
+@login_required
     #created invoice
 def invoiceList(request):
     deliveryOrderList = list(DeliveryOrderForm.objects.filter(courierStatus=3,invoiceCreated=True))
@@ -181,6 +189,7 @@ def invoiceList(request):
     }
     return render(request,'deliveryorder/indexinvoice.html',context)
 
+@login_required
 def invoiceDetails(request,deliveryOrderID):
     submitted = False
     template_name = 'deliveryorder/invoice.html'
@@ -195,6 +204,7 @@ def invoiceDetails(request,deliveryOrderID):
         if form.is_valid():
             obj = form.save(commit = False)
             obj.invoiceCreated = True
+            obj.invoiceStatus = 1
             obj.save()
             submitted = True
             return redirect("deliveryorder:financeList")

@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'login:login'
 LOGOUT_REDIRECT_URL = reverse_lazy('login:login')
 
 STATIC_URL = 'static/'
