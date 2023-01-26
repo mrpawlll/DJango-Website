@@ -126,7 +126,11 @@
     </style>
 
 
+    {{ form.non_field_errors }}
 
+    {% for errors in form.non_field_errors %}
+    {{ form.errors}}
+    {% endfor%}
 
     {% if submitted == False %}
     <form method = "POST">
@@ -137,6 +141,7 @@
                     Delivery Order
                     <small class="page-info">
                         <i class="fa fa-angle-double-right text-80"></i>
+                        ID: #{{form.deliveryOrderID}}
                     </small>
                 </h1>
             </div>
@@ -192,17 +197,19 @@
                         <div class="mt-4">
                             <div class="row text-600 text-white bgc-default-tp1 py-25">
                                 <div class="col-9 col-sm-2">ItemID</div>
-                                <div class="d-none d-sm-block  col-sm-5">Item Description</div>
+                                <div class="d-none d-sm-block  col-sm-4">Item Description</div>
                                 <div class="d-none d-sm-block col-sm-2">Item Price</div>
                                 <div class="d-none d-sm-block col-sm-2">Quantity</div>
+                                <div class="d-none d-sm-block col-sm-2">Status</div>
                             </div>
                             <!-- row for input -->
                             <div class="text-95 text-secondary-d3">
                                 <div class="row mb-2 mb-sm-0 py-25">
                                     <div class="col-9 col-sm-2" id = 'itemID'>{{form.itemID}}</div>
-                                    <div class="d-none d-sm-block col-sm-5" id = 'itemDescription'>{{form.itemDescription}}</div>
+                                    <div class="d-none d-sm-block col-sm-4" id = 'itemDescription'>{{form.itemDescription}}</div>
                                     <div class="d-none d-sm-block col-sm-2">{{ form.itemPrice }}</div>
                                     <div class="d-none d-sm-block col-sm-2 " id = 'itemQuantity'>{{form.itemQuantity}}</div>
+                                    <div class="d-none d-sm-block col-sm-2 " >{{ form.courierStatus }}</div>
                                 </div>
                             </div>    
                             <hr />

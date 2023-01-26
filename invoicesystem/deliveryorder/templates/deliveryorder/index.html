@@ -1,5 +1,7 @@
-{%extends "base.html"%}
+{%extends "homepage/base.html"%}
 {%load static%}
+{% load auth_extras %}
+
 
 {%block content%}
 {%block css%}
@@ -26,8 +28,23 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  
 {%endblock css%}
+{% if request.user|has_group:"Salesman" %} 
+  <h1>Delivery Order List Salesman</h1>
+{% endif %}
 
-  <h1>Delivery Order List</h1>
+{% if request.user|has_group:"Manager" %} 
+  <h1>Delivery Order List Manager</h1>
+{% endif %}
+
+{% if request.user|has_group:"Courier"  %}
+<h1>Delivery Order List Courier</h1>
+{% endif %}
+
+{% if request.user|has_group:"Finance"  %}
+<h1>Delivery Order List Finance</h1>
+{% endif %}
+
+
   <div class="form-outline mb-4">
     <input type="number" class="form-control" id="deliveryorder-search-input" onkeyup = "test()" placeholder="Enter delivery order ID" />
   </div>
@@ -46,9 +63,25 @@ body {
     <tbody>
     {% for deliveryOrder in deliveryOrderList %}
       <tr>
+        {% if request.user|has_group:"Salesman" %} 
         <th scope="row">{{forloop.counter}}</th>
-        <td><a href="/deliveryorder/{{deliveryOrder.deliveryOrderID}}/"> {{deliveryOrder.id}}</td>
+        <td><a href="{% url 'deliveryorder:details' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
         <td>{{deliveryOrder.status}}</td>
+        {% elif request.user|has_group:"Manager" %}
+        <th scope="row">{{forloop.counter}}</th>
+        <td><a href="{% url 'deliveryorder:approveDOdetails' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
+        <td>{{deliveryOrder.status}}</td>
+        {% elif request.user|has_group:"Courier" %}
+        <th scope="row">{{forloop.counter}}</th>
+        <td><a href="{% url 'deliveryorder:courierdetails' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
+        <td>{{deliveryOrder.courierStat}}</td>
+        {% elif request.user|has_group:"Finance" %}
+        <th scope="row">{{forloop.counter}}</th>
+        <td><a href="{% url 'deliveryorder:invoicedetails' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
+        <td>{{deliveryOrder.invoiceCreated}}</td>
+        {% endif %}
+
+       
       </tr>
     {% endfor %}
     </tbody>
@@ -56,7 +89,7 @@ body {
   </table>
 </div>
   {% else %}
-  <p>Delivery order forms are unavailable</p>
+  <div class ="text-center bg-warning rounded-5">Delivery order forms are empty, it's your day off :P</div>
   {% endif %}
   
 {%endblock%}

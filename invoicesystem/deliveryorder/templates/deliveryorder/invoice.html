@@ -126,7 +126,11 @@
     </style>
 
 
+    {{ form.non_field_errors }}
 
+    {% for errors in form.non_field_errors %}
+    {{ form.errors}}
+    {% endfor%}
 
     {% if submitted == False %}
     <form method = "POST">
@@ -134,9 +138,10 @@
         <div class="page-content container">
             <div class="page-header text-blue-d2">
                 <h1 class="page-title text-secondary-d1">
-                    Delivery Order
+                    Invoice
                     <small class="page-info">
                         <i class="fa fa-angle-double-right text-80"></i>
+                        ID: #{{deliveryOrderID.id}}
                     </small>
                 </h1>
             </div>
@@ -179,10 +184,10 @@
                                 <hr class="d-sm-none" />
                                 <div class="text-grey-m2">
                                     <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                                        Delivery Order
+                                        Invoice
                                     </div>
         
-                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span>{{deliveryOrderID.nextid}}</div>
+                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span>{{deliveryOrderID.id}}</div>
         
                                     <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> {{form.deliveryOrderDate}}</div>
                                 </div>
@@ -192,17 +197,19 @@
                         <div class="mt-4">
                             <div class="row text-600 text-white bgc-default-tp1 py-25">
                                 <div class="col-9 col-sm-2">ItemID</div>
-                                <div class="d-none d-sm-block  col-sm-5">Item Description</div>
+                                <div class="d-none d-sm-block  col-sm-4">Item Description</div>
                                 <div class="d-none d-sm-block col-sm-2">Item Price</div>
                                 <div class="d-none d-sm-block col-sm-2">Quantity</div>
+                                <div class="d-none d-sm-block col-sm-2">Total</div>
                             </div>
                             <!-- row for input -->
                             <div class="text-95 text-secondary-d3">
                                 <div class="row mb-2 mb-sm-0 py-25">
                                     <div class="col-9 col-sm-2" id = 'itemID'>{{form.itemID}}</div>
-                                    <div class="d-none d-sm-block col-sm-5" id = 'itemDescription'>{{form.itemDescription}}</div>
+                                    <div class="d-none d-sm-block col-sm-4" id = 'itemDescription'>{{form.itemDescription}}</div>
                                     <div class="d-none d-sm-block col-sm-2">{{ form.itemPrice }}</div>
                                     <div class="d-none d-sm-block col-sm-2 " id = 'itemQuantity'>{{form.itemQuantity}}</div>
+                                    <div class="d-none d-sm-block col-sm-2 " >{{ form.invoiceTotal }}</div>
                                 </div>
                             </div>    
                             <hr />
