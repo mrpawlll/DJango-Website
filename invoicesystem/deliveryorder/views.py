@@ -136,7 +136,7 @@ def approveInvoice(request,deliveryOrderID):
 @permission_required('deliveryorder.view_deliveryorderform',raise_exception=True)
 def courierDeliveryOrderList(request):
 
-    deliveryOrderList = list(DeliveryOrderForm.objects.filter())
+    deliveryOrderList = list(DeliveryOrderForm.objects.filter(deliveryOrderStatus=3))
     context = {
     'deliveryOrderList' : deliveryOrderList
     }

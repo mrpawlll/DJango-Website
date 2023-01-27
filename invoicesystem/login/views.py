@@ -1,8 +1,7 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views import generic
 from django.views.generic.base import TemplateView
 
 class MyLoginView(LoginView):
@@ -24,6 +23,4 @@ class MenuPageView(LoginRequiredMixin,TemplateView):
         login_url = reverse_lazy('login:login')
         return login_url
 
-class NoAccessView(TemplateView):
-    template_name="homepage/noaccess.html"
-    login_url = reverse_lazy('login:noaccess')
+
