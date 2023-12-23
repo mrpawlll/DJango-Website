@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from django.urls import reverse_lazy
 
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,15 +30,13 @@ SECRET_KEY = 'django-insecure-!3dbk3+jm65wujuvr&q5x@@0ybw=kjir&k$qc*%l7kpnqubyq_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 LOGIN_URL = 'login:login'
 LOGOUT_REDIRECT_URL = reverse_lazy('login:login')
-
-STATIC_URL = 'static/'
 
 STATIC_ROOT = 'static/'
 
