@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "phonenumber_field",
-    'mod-wsgi.server',
+    'mod_wsgi.server',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +84,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'invoicesystem.wsgi.application'
 
 
 # Database
@@ -140,7 +139,10 @@ STATIC_URL = 'invoicesystem/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#mod_wsgi express logging
+#mod_wsgi setup
+WSGI_APPLICATION = 'invoicesystem.wsgi.application'
+
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
