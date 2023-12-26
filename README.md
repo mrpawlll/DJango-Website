@@ -1,8 +1,10 @@
 # TSE2101_Django
 
-You will have to first run the virtual environment for the project first, located in Scripts.
+First, initialize a virtual environment. This can be done by running:
+python -m venv ./
+
 Then, install the libraries required by running: <br>
-py -m pip install -r requirements.txt
+pip install -r pip-requirements.txt
 
 Then you can run the server by navigating into invoicesystem, then typing: <br>
 python manage.py runserver
