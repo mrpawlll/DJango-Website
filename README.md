@@ -1,6 +1,6 @@
 # TSE2101_Django
 
-First, initialize a virtual environment. This can be done by running:
+First, initialize a virtual environment. This can be done by running: <br>
 python -m venv ./
 
 Then, install the libraries required by running: <br>
