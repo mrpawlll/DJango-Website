@@ -1,5 +1,5 @@
-/lib
-/include
-/bin
+env/
 pyvenv.cfg
 .DS_Store
+invoicesystem/clientkey
+invoicesystem/keys
