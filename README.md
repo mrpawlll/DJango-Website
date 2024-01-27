@@ -38,3 +38,7 @@ pip freeze > pip-requirements.txt
 ```
 
 If using pipreqs to update, just run it as usual.
+
+## Possible future changes
+
+Instead of using the module "Whitenoise" to serve static files, use a seperate webserver (NGinx, Apache) that implements reverse-proxy to serve the static files instead.
