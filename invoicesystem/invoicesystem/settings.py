@@ -15,7 +15,7 @@ from django.urls import reverse_lazy
 
 import os
 import mimetypes
-mimetypes.add_type("text/css", ".css", True)
+# mimetypes.add_type("text/css", ".css", True)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!3dbk3+jm65wujuvr&q5x@@0ybw=kjir&k$qc*%l7kpnqubyq_'
+
+with open('./invoicesystem/secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'deliveryorder.apps.DeliveryorderConfig',
     'invoice.apps.InvoiceConfig',
     'login.apps.LoginConfig',
+    "daphne",
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,11 +56,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "phonenumber_field",
-    'mod_wsgi.server',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,22 +142,13 @@ STATIC_URL = 'invoicesystem/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#mod_wsgi setup
-WSGI_APPLICATION = 'invoicesystem.wsgi.application'
+#ASGI setup
+ASGI_APPLICATION = 'invoicesystem.asgi.application'
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
-        },
-    },
-}
+
+#Security Settings
+#Redirect to https for http requests
+SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True

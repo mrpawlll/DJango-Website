@@ -1,5 +1,4 @@
 env/
 pyvenv.cfg
 .DS_Store
-invoicesystem/clientkey
-invoicesystem/keys
+**/__pycache__
