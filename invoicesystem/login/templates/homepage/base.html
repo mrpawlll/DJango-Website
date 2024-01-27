@@ -14,7 +14,7 @@
     <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
 
-          <a class="navbar-brand nav-link" href="{% url 'login:menu' %}">ABC Invoicing System</a>
+          <a class="navbar-brand nav-link" href="{% url 'login:menu' %}">Agis Invoicing System</a>
 
           {% if user.is_authenticated%}
           <form method="post" action ={% url 'login:logout' %}>
