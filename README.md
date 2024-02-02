@@ -12,6 +12,13 @@ Pyvenv <br>
 First, you should install Python for your own system first. Then, install pyvenv for that installation of Python. After that, initialize a virtual environment. This can be done by running: <br>
 python -m venv env <br>
 
+Once virtual environment is setup, enter the python virtual environment by running the ```activate``` script file inside ```./env``` </br>
+
+To execute the `activate` script file, user probably needs to set execution policy. This can be done by running: <br>
+```
+Set-ExecutionPolicy -scope Process Unrestricted
+```
+
 Then, install the libraries required by running: <br>
 pip install -r pip-requirements.txt <br>
 
