@@ -1,0 +1,5 @@
+# comment
+[mydb]
+host=192.168.39.7
+port=5432
+user=postgres

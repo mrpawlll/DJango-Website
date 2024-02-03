@@ -10,46 +10,46 @@ class Status(models.IntegerChoices):
     approved = 3
 
 class DeliveryOrderForm(models.Model):
-    deliveryOrderID = models.AutoField(unique=True,primary_key=True)
-    vendorName = models.CharField(default = 'vendorname', max_length=30)
-    vendorAddress = models.CharField(default = 'Cyberjaya' ,max_length=200)
-    recipientName = models.CharField(default = 'recipientName',max_length=30)
-    recipientPhone = PhoneNumberField(blank=False)
-    recipientAddress = models.CharField(default = 'recipientaddress',max_length=200)
-    deliveryOrderDate = models.DateTimeField(default=timezone.now)
+    deliveryorderid = models.AutoField(unique=True,primary_key=True)
+    vendorname = models.CharField(default = 'vendorname', max_length=30)
+    vendoraddress = models.CharField(default = 'Cyberjaya' ,max_length=200)
+    recipientname = models.CharField(default = 'recipientName',max_length=30)
+    recipientphone = PhoneNumberField(blank=False)
+    recipientaddress = models.CharField(default = 'recipientaddress',max_length=200)
+    deliveryorderdate = models.DateTimeField(default=timezone.now)
 
-    deliveryOrderStatus = models.IntegerField(default=Status.pending,choices=Status.choices)
-    courierStatus = models.IntegerField(default = Status.pending,choices=Status.choices)
-    invoiceStatus = models.IntegerField(default = Status.pending,choices=Status.choices)
-    invoiceCreated = models.BooleanField(default=False)
+    deliveryorderstatus = models.IntegerField(default=Status.pending,choices=Status.choices)
+    courierstatus = models.IntegerField(default = Status.pending,choices=Status.choices)
+    invoicestatus = models.IntegerField(default = Status.pending,choices=Status.choices)
+    invoicecreated = models.BooleanField(default=False)
 
-    itemID = models.IntegerField(default = 0)
-    itemPrice = models.DecimalField(default=0,max_digits=19,decimal_places=2)
-    itemDescription = models.CharField(default = 'empty',max_length=30)
-    itemQuantity = models.IntegerField(default=0)
-    invoiceTotal = models.DecimalField(default=0,max_digits=19,decimal_places=2)
+    itemid = models.IntegerField(default = 0)
+    itemprice = models.DecimalField(default=0,max_digits=19,decimal_places=2)
+    itemdescription = models.CharField(default = 'empty',max_length=30)
+    itemquantity = models.IntegerField(default=0)
+    invoicetotal = models.DecimalField(default=0,max_digits=19,decimal_places=2)
 
     def __str__(self):
-        string = 'ID : ' + str(self.deliveryOrderID) + ' - ' + self.recipientName
+        string = 'ID : ' + str(self.deliveryorderid) + ' - ' + self.recipientName
         return string
 
     def id(self):
-        string = str("{:04d}".format(self.deliveryOrderID))
+        string = str("{:04d}".format(self.deliveryorderid))
         return string
 
     def nextid(self):
-        string = str("{:04d}".format(self.deliveryOrderID+1))
+        string = str("{:04d}".format(self.deliveryorderid+1))
         return string
     
     def date(self):
-        date = self.deliveryOrderDate.date()
+        date = self.deliveryorderdate.date()
         return date.strftime("%B %d %Y")    
 
     def vendor_name(self):
         return self.vendorName
     
     def status(self):
-        status = self.deliveryOrderStatus
+        status = self.deliveryorderstatus
         if status == 3:
             status = "Approved"
         elif status == 2:
@@ -59,7 +59,7 @@ class DeliveryOrderForm(models.Model):
         return status
     
     def courierStat(self):
-        courierStat = self.courierStatus
+        courierStat = self.courierstatus
         if courierStat == 3:
             courierStat = "Approved"
         elif courierStat == 2:
@@ -69,7 +69,7 @@ class DeliveryOrderForm(models.Model):
         return courierStat
     
     def invoiceStat(self):
-        invoiceStat = self.invoiceStatus
+        invoiceStat = self.invoicestatus
         if invoiceStat == 3:
             invoiceStat = "Approved"
         elif invoiceStat == 2:
@@ -79,11 +79,11 @@ class DeliveryOrderForm(models.Model):
         return invoiceStat
         
     def save(self):
-        self.vendorName = self.vendorName.upper()
-        self.vendorAddress = self.vendorAddress.upper()
-        self.recipientName = self.recipientName.upper()
-        self.recipientAddress = self.recipientAddress.upper()
-        self.invoiceTotal= self.itemQuantity *  self.itemPrice
+        self.vendorname = self.vendorname.upper()
+        self.vendoraddress = self.vendoraddress.upper()
+        self.recipientname = self.recipientname.upper()
+        self.recipientaddress = self.recipientaddress.upper()
+        self.invoicetotal= self.itemquantity *  self.itemprice
         super().save()
 
 

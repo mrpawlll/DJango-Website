@@ -18,7 +18,7 @@ def run():
         DeliveryOrderForm.objects.order_by('-deliveryOrderID')[:1]
     )
     form = DOForm(initial={'deliveryOrderID':deliveryOrderID.nextid})
-    form['deliveryOrderID'].value()
+    form['deliveryorderid'].value()
 
 
 if __name__ == '__main__':

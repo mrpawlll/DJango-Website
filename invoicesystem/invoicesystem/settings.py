@@ -17,7 +17,6 @@ import os
 import mimetypes
 # mimetypes.add_type("text/css", ".css", True)
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -94,8 +93,14 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "djangowebsite",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "192.168.39.7",
+        "PORT": "5432",
     }
 }
 

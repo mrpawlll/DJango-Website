@@ -24,14 +24,14 @@ def index(request):
     return render(request,'deliveryorder/index.html',context)
 
 @login_required
-def details(request,deliveryOrderID):
-    deliveryOrderID = get_object_or_404(DeliveryOrderForm,pk = deliveryOrderID)
-    return render(request,'deliveryorder/details.html',{'deliveryOrderID':deliveryOrderID})
+def details(request,deliveryorderid):
+    deliveryorderid = get_object_or_404(DeliveryOrderForm,pk = deliveryorderid)
+    return render(request,'deliveryorder/details.html',{'deliveryorderid':deliveryorderid})
 
 @login_required
 def createDeliveryOrder(request):
     submitted = False
-    deliveryOrderID = DeliveryOrderForm.objects.order_by('-deliveryOrderID')[:1]
+    deliveryorderid = DeliveryOrderForm.objects.order_by('-deliveryorderid')[:1]
     template_name = 'deliveryorder/create.html'
     form = DOForm()
     if request.method == 'POST':
@@ -45,7 +45,7 @@ def createDeliveryOrder(request):
 
     context= {
             'submitted':submitted,
-            'deliveryOrderID':deliveryOrderID,
+            'deliveryOrderID':deliveryorderid,
             'form':form
         }
 
@@ -59,7 +59,7 @@ def createDeliveryOrder(request):
 @permission_required('deliveryorder.view_deliveryorderform',raise_exception=True)
 def approveDeliveryOrderList(request):
 
-    deliveryOrderList = list(DeliveryOrderForm.objects.filter(deliveryOrderStatus=1))
+    deliveryOrderList = list(DeliveryOrderForm.objects.filter(deliveryorderstatus=1))
 
     context = {
     'deliveryOrderList' : deliveryOrderList
@@ -67,11 +67,11 @@ def approveDeliveryOrderList(request):
     return render(request,'deliveryorder/index.html',context)
 
 @login_required
-def approveDetails(request,deliveryOrderID):
+def approveDetails(request,deliveryorderid):
     submitted = False
     template_name = 'deliveryorder/approvedeliveryorder.html'
 
-    delivery = DeliveryOrderForm.objects.get(pk=deliveryOrderID)
+    delivery = DeliveryOrderForm.objects.get(pk=deliveryorderid)
 
     form = approveDOForm(instance=delivery)
     if request.method == 'POST':
@@ -95,7 +95,7 @@ def approveDetails(request,deliveryOrderID):
 @login_required
 def approveInvoiceList(request):
 
-    deliveryOrderList = list(DeliveryOrderForm.objects.filter(invoiceStatus=1,invoiceCreated=True))
+    deliveryOrderList = list(DeliveryOrderForm.objects.filter(invoicestatus=1,invoicecreated=True))
 
     context = {
     'deliveryOrderList' : deliveryOrderList
@@ -103,11 +103,11 @@ def approveInvoiceList(request):
     return render(request,'deliveryorder/indexinvoice.html',context)
 
 @login_required
-def approveInvoice(request,deliveryOrderID):
+def approveInvoice(request,deliveryorderid):
     submitted = False
     template_name = 'deliveryorder/approveinvoice.html'
 
-    delivery = DeliveryOrderForm.objects.get(pk=deliveryOrderID)
+    delivery = DeliveryOrderForm.objects.get(pk=deliveryorderid)
 
     form = approveInvoiceForm(instance=delivery)
     if request.method == 'POST':
@@ -174,7 +174,7 @@ def courierDetails(request,deliveryOrderID):
 @permission_required('deliveryorder.view_deliveryorderform',raise_exception=True)
     #courier approved
 def financeDeliveryOrderList(request):
-    deliveryOrderList = list(DeliveryOrderForm.objects.filter(courierStatus=3,invoiceCreated=False))
+    deliveryOrderList = list(DeliveryOrderForm.objects.filter(courierstatus=3,invoiceCreated=False))
     context = {
     'deliveryOrderList' : deliveryOrderList
     }
@@ -183,7 +183,7 @@ def financeDeliveryOrderList(request):
 @login_required
     #created invoice
 def invoiceList(request):
-    deliveryOrderList = list(DeliveryOrderForm.objects.filter(courierStatus=3,invoiceCreated=True))
+    deliveryOrderList = list(DeliveryOrderForm.objects.filter(courierstatus=3,invoiceCreated=True))
     context = {
     'deliveryOrderList' : deliveryOrderList
     }

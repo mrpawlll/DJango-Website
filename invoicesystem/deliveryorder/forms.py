@@ -14,71 +14,71 @@ class DOForm(ModelForm):
     class Meta:
         model = DeliveryOrderForm
         fields = [
-    'deliveryOrderID',
-    'recipientName',
-    'recipientPhone',
-    'recipientAddress',
-    'deliveryOrderDate',
-    'itemID',
-    'itemPrice',
-    'itemDescription',
-    'itemQuantity',]
+    'deliveryorderid',
+    'recipientname',
+    'recipientphone',
+    'recipientaddress',
+    'deliveryorderdate',
+    'itemid',
+    'itemprice',
+    'itemdescription',
+    'itemquantity',]
 
 class approveDOForm(ModelForm):
     class Meta:
         model = DeliveryOrderForm
         fields = [
-    'recipientName',
-    'recipientPhone',
-    'recipientAddress',
-    'deliveryOrderDate',
-    'itemID',
-    'itemPrice',
-    'itemDescription',
-    'itemQuantity',
-    'deliveryOrderStatus']
+    'recipientname',
+    'recipientphone',
+    'recipientaddress',
+    'deliveryorderdate',
+    'itemid',
+    'itemprice',
+    'itemdescription',
+    'itemquantity',
+    'deliveryorderstatus']
 
 class courierForm(ModelForm):
     class Meta:
         model = DeliveryOrderForm
         fields = [
-    'recipientName',
-    'recipientPhone',
-    'recipientAddress',
-    'deliveryOrderDate',
-    'itemID',
-    'itemPrice',
-    'itemDescription',
-    'itemQuantity',
-    'courierStatus']
+    'recipientname',
+    'recipientphone',
+    'recipientaddress',
+    'deliveryorderdate',
+    'itemid',
+    'itemprice',
+    'itemdescription',
+    'itemquantity',
+    'courierstatus']
 
 class invoiceForm(ModelForm):
     class Meta:
         model = DeliveryOrderForm
         fields = [
-    'recipientName',
-    'recipientPhone',
-    'recipientAddress',
-    'deliveryOrderDate',
-    'itemID',
-    'itemPrice',
-    'itemDescription',
-    'itemQuantity',
-    'invoiceTotal',
-    'invoiceCreated']
+    'recipientname',
+    'recipientphone',
+    'recipientaddress',
+    'deliveryorderdate',
+    'itemid',
+    'itemprice',
+    'itemdescription',
+    'itemquantity',
+    'invoicetotal',
+    'invoicecreated']
 
 class approveInvoiceForm(ModelForm):
     class Meta:
         model = DeliveryOrderForm
         fields = [
-    'recipientName',
-    'recipientPhone',
-    'recipientAddress',
-    'deliveryOrderDate',
-    'itemID',
-    'itemPrice',
-    'itemDescription',
-    'itemQuantity',
-    'invoiceTotal',
-    'invoiceStatus']
+    'recipientname',
+    'recipientphone',
+    'recipientaddress',
+    'deliveryorderdate',
+    'itemid',
+    'itemprice',
+    'itemdescription',
+    'itemquantity',
+    'invoicetotal',
+    'invoicestatus']
 
