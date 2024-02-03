@@ -141,7 +141,7 @@
                     Delivery Order
                     <small class="page-info">
                         <i class="fa fa-angle-double-right text-80"></i>
-                        ID: #{{deliveryOrderID.id}}
+                        ID: # {{form.id}}
                     </small>
                 </h1>
             </div>
@@ -166,16 +166,16 @@
                                 <div>
                                     <!-- RECIPIENT ADDRESS -->
                                     <span class="text-sm text-grey-m2 align-middle">To:</span><br>
-                                    <span class="text-600 text-110 text-blue align-middle">{{form.recipientName}}</span>
+                                    <span class="text-600 text-110 text-blue align-middle">{{form.recipientname}}</span>
                                 </div>
                                 <div class="text-grey-m2">
                                     Address:
                                     <div class="my-1 align-middle">
-                                    {{form.recipientAddress}}
+                                    {{form.recipientaddress}}
                                     </div>
                                     <div class="my-1">
                                     <span class="text-sm text-grey-m2 align-middle">Phone No. :</span>
-                                    <i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600">{{form.recipientPhone}}</b></div>
+                                    <i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600">{{form.recipientphone}}</b></div>
                                     </div>
                             </div>
                             <!-- /.col -->
@@ -187,9 +187,9 @@
                                         Delivery Order
                                     </div>
         
-                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span>{{deliveryOrderID.id}}</div>
+                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span>{{deliveryorderid.deliveryorderid}}</div>
         
-                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> {{form.deliveryOrderDate}}</div>
+                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> {{form.deliveryorderdate}}</div>
                                 </div>
                             </div>
                             <!-- /.col -->
@@ -205,11 +205,11 @@
                             <!-- row for input -->
                             <div class="text-95 text-secondary-d3">
                                 <div class="row mb-2 mb-sm-0 py-25">
-                                    <div class="col-9 col-sm-2" id = 'itemID'>{{form.itemID}}</div>
-                                    <div class="d-none d-sm-block col-sm-4" id = 'itemDescription'>{{form.itemDescription}}</div>
-                                    <div class="d-none d-sm-block col-sm-2">{{ form.itemPrice }}</div>
-                                    <div class="d-none d-sm-block col-sm-2 " id = 'itemQuantity'>{{form.itemQuantity}}</div>
-                                    <div class="d-none d-sm-block col-sm-2 " id = 'itemQuantity'>{{ form.deliveryOrderStatus }}</div>
+                                    <div class="col-9 col-sm-2" id = 'itemID'>{{form.itemid}}</div>
+                                    <div class="d-none d-sm-block col-sm-4" id = 'itemDescription'>{{form.itemdescription}}</div>
+                                    <div class="d-none d-sm-block col-sm-2">{{ form.itemprice }}</div>
+                                    <div class="d-none d-sm-block col-sm-2 " id = 'itemQuantity'>{{form.itemquantity}}</div>
+                                    <div class="d-none d-sm-block col-sm-2 " id = 'itemQuantity'>{{ form.deliveryorderstatus }}</div>
                                 </div>
                             </div>    
                             <hr />

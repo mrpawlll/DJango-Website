@@ -65,20 +65,20 @@ body {
       <tr>
         {% if request.user|has_group:"Salesman" %} 
         <th scope="row">{{forloop.counter}}</th>
-        <td><a href="{% url 'deliveryorder:details' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
+        <td><a href="{% url 'deliveryorder:details' deliveryOrder.deliveryorderid %}"> {{deliveryOrder.id}}</td>
         <td>{{deliveryOrder.status}}</td>
         {% elif request.user|has_group:"Manager" %}
         <th scope="row">{{forloop.counter}}</th>
-        <td><a href="{% url 'deliveryorder:approveDOdetails' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
+        <td><a href="{% url 'deliveryorder:approveDOdetails' deliveryOrder.deliveryorderid %}"> {{deliveryOrder.id}}</td>
         <td>{{deliveryOrder.status}}</td>
         {% elif request.user|has_group:"Courier" %}
         <th scope="row">{{forloop.counter}}</th>
-        <td><a href="{% url 'deliveryorder:courierdetails' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
+        <td><a href="{% url 'deliveryorder:courierdetails' deliveryOrder.deliveryorderid %}"> {{deliveryOrder.id}}</td>
         <td>{{deliveryOrder.courierStat}}</td>
         {% elif request.user|has_group:"Finance" %}
         <th scope="row">{{forloop.counter}}</th>
-        <td><a href="{% url 'deliveryorder:invoicedetails' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
-        <td>{{deliveryOrder.invoiceCreated}}</td>
+        <td><a href="{% url 'deliveryorder:invoicedetails' deliveryOrder.deliveryorderid %}"> {{deliveryOrder.id}}</td>
+        <td>{{deliveryOrder.invoicecreated}}</td>
         {% endif %}
 
        

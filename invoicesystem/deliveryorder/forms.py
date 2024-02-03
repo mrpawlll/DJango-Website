@@ -42,6 +42,7 @@ class courierForm(ModelForm):
     class Meta:
         model = DeliveryOrderForm
         fields = [
+    'deliveryorderid',
     'recipientname',
     'recipientphone',
     'recipientaddress',

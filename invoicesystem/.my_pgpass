@@ -1,2 +1,0 @@
-# hostname:port:database:username:password
-192.168.39.7:5432:djangowebsite:django:django

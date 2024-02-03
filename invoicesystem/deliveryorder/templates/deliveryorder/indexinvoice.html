@@ -49,14 +49,14 @@ body {
     {% for deliveryOrder in deliveryOrderList %}
         <th scope="row">{{forloop.counter}}</th>
         {% if request.user|has_group:"Finance" %} 
-        <td><a href="{% url 'deliveryorder:invoicedetails' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
+        <td><a href="{% url 'deliveryorder:invoicedetails' deliveryOrder.deliveryorderid %}"> {{deliveryOrder.id}}</td>
         {%endif%}
 
         {% if request.user|has_group:"Manager" %} 
-        <td><a href="{% url 'deliveryorder:approveInvoicedetails' deliveryOrder.deliveryOrderID %}"> {{deliveryOrder.id}}</td>
+        <td><a href="{% url 'deliveryorder:approveInvoicedetails' deliveryOrder.deliveryorderid %}"> {{deliveryOrder.id}}</td>
         {%endif%}
 
-        <td>{{deliveryOrder.invoiceStat}}</td>
+        <td>{{ deliveryOrder.invoiceStat }}</td>
       </tr>
     {% endfor %}
     </tbody>

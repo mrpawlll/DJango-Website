@@ -30,7 +30,7 @@ class DeliveryOrderForm(models.Model):
     invoicetotal = models.DecimalField(default=0,max_digits=19,decimal_places=2)
 
     def __str__(self):
-        string = 'ID : ' + str(self.deliveryorderid) + ' - ' + self.recipientName
+        string = 'ID : ' + str(self.deliveryorderid) + ' - ' + self.recipientname
         return string
 
     def id(self):
@@ -68,15 +68,14 @@ class DeliveryOrderForm(models.Model):
             courierStat = "Pending"
         return courierStat
     
+    @property
     def invoiceStat(self):
-        invoiceStat = self.invoicestatus
-        if invoiceStat == 3:
-            invoiceStat = "Approved"
-        elif invoiceStat == 2:
-            invoiceStat = "Disapproved"
+        if self.invoicestatus == 3:
+            return "Approved"
+        elif self.invoicestatus == 2:
+            return "Disapproved"
         else:
-            invoiceStat = "Pending"
-        return invoiceStat
+            return "Pending"
         
     def save(self):
         self.vendorname = self.vendorname.upper()
