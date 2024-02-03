@@ -49,3 +49,37 @@ If using pipreqs to update, just run it as usual.
 ## Possible future changes
 
 Instead of using the module "Whitenoise" to serve static files, use a seperate webserver (NGinx, Apache) that implements reverse-proxy to serve the static files instead.
+
+
+## Setting up POSTGRES
+
+Setup PostgreSQL service in machine.
+
+Connect to PostgreSQL service.
+
+Enter in psql.
+
+CREATE DATABASE djangowebsite;
+CREATE USER django WITH PASSWORD 'django';
+ALTER ROLE django SET client_encoding TO 'utf8';
+ALTER ROLE django SET default_transaction_isolation TO 'read committed';
+ALTER ROLE django SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE myproject TO django;
+
+Edit in settings.py for the following fields:
+```
+...
+
+DATABASES = {
+    'default': {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "djangowebsite",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "<your machine's IP>",
+        "PORT": "5432", #could be a different port if you set it up differently
+    }
+}
+
+...
+```
