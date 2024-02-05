@@ -3,6 +3,11 @@
 Python 3.12.1 <br>
 Pyvenv <br>
 
+## Sidenote
+db.sqlite3 is just a backup in-case dbexportfrom.pgsql's content is screwed up.
+
+File to be imported into PostgreSQL server is using dbexportfrom.pgsql
+
 ## Main modules implemented from Python:<br>
 1. Django <br>
 1. Whitenoise (to serve static files)
@@ -51,20 +56,22 @@ If using pipreqs to update, just run it as usual.
 Instead of using the module "Whitenoise" to serve static files, use a seperate webserver (NGinx, Apache) that implements reverse-proxy to serve the static files instead.
 
 
-## Setting up POSTGRES
+## Setting up PostgreSQL
 
 Setup PostgreSQL service in machine.
 
 Connect to PostgreSQL service.
 
-Enter in psql.
+Enter in psql then run the following commands:
 
+```
 CREATE DATABASE djangowebsite;
 CREATE USER django WITH PASSWORD 'django';
 ALTER ROLE django SET client_encoding TO 'utf8';
 ALTER ROLE django SET default_transaction_isolation TO 'read committed';
 ALTER ROLE django SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE myproject TO django;
+```
 
 Edit in settings.py for the following fields:
 ```
@@ -83,3 +90,21 @@ DATABASES = {
 
 ...
 ```
+
+To import the dbexportfrom.pgsql to your PostgreSQL server's database named djangowebsite, you will first have to change your current user session to postgres. For most Unix terminals this can either be done by running:
+```
+su postgres
+
+or
+
+sudo su - postgres
+```
+
+
+Once that is done, start importing the content of dbexportfrom.pgsql to your PostgreSQL server by running:
+```
+psql -U postgres djangowebsite < /docker-entrypoint-initdb.d/dbexportfrom.pgsql
+```
+
+### Using docker-compose
+Just run `docker compose up` in the `docker` directory.
