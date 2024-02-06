@@ -274,3 +274,14 @@ psql --host=invoice-database-1.c3us44qg8m8n.us-east-1.rds.amazonaws.com --port=5
 
 ### DONE!
 Now, you can go back to your Elastic Beanstalk environment and copy the Domain's URL into your clipboard and paste it in your browser's address bar. If everything is configured correctly, you should be greeted with the login page. If not, good luck bro.
+
+## IMPORTANT NOTICE
+Security aspect of the website is shit. No SSL redirect, no CSRF token, no session cookie. This needs to be fixed. Possible reference to fix this is: https://github.com/PaulleDemon/AWS-deployment/blob/master/django-channels.md
+
+```
+...
+DEBUG = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# SSL_REDIRECT = True
+```
