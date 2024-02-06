@@ -32,6 +32,7 @@ with open('./invoicesystem/secret_key.txt') as f:
 ALLOWED_HOSTS = ['*']
 
 
+
 # Application definition
 
 LOGIN_URL = 'login:login'
@@ -152,7 +153,6 @@ ASGI_APPLICATION = 'invoicesystem.asgi.application'
 #Security Settings
 #Redirect to https for http requests
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-SECURE_SSL_REDIRECT = True
+DEBUG = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
