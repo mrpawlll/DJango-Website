@@ -11,4 +11,4 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./mount:/docker-entrypoint-initdb.d/
+      - ./mount/:/docker-entrypoint-initdb.d/
