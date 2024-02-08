@@ -9,17 +9,17 @@ class DeliveryOrderAdmin(admin.ModelAdmin):
     fieldsets=[
         ('Delivery Order Details', 
         {'fields' :[
-            'vendorName',
-            'vendorAddress',
-            'recipientName',
-            'recipientAddress',
-            'recipientPhone',
-            'deliveryOrderDate',
-            'deliveryOrderStatus',
-            'itemID',
-            'itemPrice',
-            'itemDescription',
-            'itemQuantity',]
+            'vendorname',
+            'vendoraddress',
+            'recipientname',
+            'recipientaddress',
+            'recipientphone',
+            'deliveryorderdate',
+            'deliveryorderstatus',
+            'itemid',
+            'itemprice',
+            'itemdescription',
+            'itemquantity',]
         }
             )]
 

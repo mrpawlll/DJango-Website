@@ -11,7 +11,7 @@ class Status(models.IntegerChoices):
 
 class DeliveryOrderForm(models.Model):
     deliveryorderid = models.AutoField(unique=True,primary_key=True)
-    vendorname = models.CharField(default = 'vendorname', max_length=30)
+    vendorname = models.CharField(default = 'AGIS', max_length=30)
     vendoraddress = models.CharField(default = 'Cyberjaya' ,max_length=200)
     recipientname = models.CharField(default = 'recipientName',max_length=30)
     recipientphone = PhoneNumberField(blank=False)
