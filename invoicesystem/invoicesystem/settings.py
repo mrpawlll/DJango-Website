@@ -97,7 +97,7 @@ DATABASES = {
         "NAME": "djangowebsite",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "invoice-database-1.c3us44qg8m8n.us-east-1.rds.amazonaws.com",
+        "HOST": "postdb",
         "PORT": "5432",
     }
 }
@@ -153,7 +153,7 @@ ASGI_APPLICATION = 'invoicesystem.asgi.application'
 #Security Settings
 #Redirect to https for http requests
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
 # SSL_REDIRECT = True
