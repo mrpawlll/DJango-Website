@@ -22,5 +22,5 @@ services:
       - db:postdb
     entrypoint: ["ash", "-c", "apk update && apk add --no-cache python3 py3-pip && cd invweb && pip install -r requirements.txt --break-system-packages && daphne -e ssl:port=8000:privateKey=./certificates/key.pem:certKey=./certificates/crt.pem invoicesystem.asgi:application"]
     volumes:
-      - ../invoicesystem/:/invweb/
+      - ./invoicesystem/:/invweb/
     tty: true
