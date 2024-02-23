@@ -4,8 +4,6 @@ Python 3.12.1 <br>
 Pyvenv <br>
 
 ## Sidenote
-db.sqlite3 is just a backup in-case dbexportfrom.pgsql's content is screwed up.
-
 File to be imported into PostgreSQL server is using dbexportfrom.pgsql
 
 ## Main modules implemented from Python:<br>
@@ -31,6 +29,8 @@ pip freeze > pip-requirements.txt
 ```
 
 If using pipreqs to update, just run it as usual.
+
+After every recreation of requirements.txt via `pip freeze`, always remove `twisted-iocpsupport` from the textfile.
 
 ## Possible future changes
 
