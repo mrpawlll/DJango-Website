@@ -39,6 +39,9 @@ After every recreation of requirements.txt via `pip freeze`, always remove `twis
 
 Instead of using the module "Whitenoise" to serve static files, use a seperate webserver (NGinx, Apache) that implements reverse-proxy to serve the static files instead.
 
+## Setting up Daphne and PostgreSQL using docker-compose
+If you're too lazy to manually setup Daphne and PostgreSQL on your machine, just run `docker compose up` after installing Docker (not going to explain Docker installation here, sorry).
+
 ## Setting up Daphne <br>
 First, you should install Python for your own system first. Then, install pyvenv for that installation of Python. After that, initialize a virtual environment. This can be done by running: <br>
 python -m venv env <br>
@@ -107,6 +110,3 @@ Once that is done, start importing the content of dbexportfrom.pgsql to your Pos
 ```
 psql -U postgres djangowebsite < /docker-entrypoint-initdb.d/dbexportfrom.pgsql
 ```
-
-## Using docker-compose
-Just run `docker compose up` after installing Docker (not going to explain Docker installation here, sorry).
