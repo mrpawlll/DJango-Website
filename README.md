@@ -1,4 +1,7 @@
-# TCS3651 Assignment 1
+# Invoicing System
+## Description
+This was an assignment given in my Computer Science course for a subject named Software Engineering Fundamentals. We were tasked to create an invoicing system website. This website was used multiple times throughout different subjects to be continuosly improved.
+
 ## System requirement <br>
 Python 3.12.1 <br>
 Pyvenv <br>
