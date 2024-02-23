@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=en_US.UTF-8 --lc-ctype=en_US.UTF-8"
+    ports:
+      - 5432:5432
+    volumes:
+      - ./mount_db/:/docker-entrypoint-initdb.d/
+  
+  invweb:
+    image: alpine
+    restart: "no"
+    ports:
+      - 8000:8000
+    external_links:
+      - db:postdb
+    entrypoint: ["ash", "-c", "apk update && apk add --no-cache python3 py3-pip && cd invweb && pip install -r requirements.txt --break-system-packages && daphne -e ssl:port=8000:privateKey=./certificates/key.pem:certKey=./certificates/crt.pem invoicesystem.asgi:application"]
+    volumes:
+      - ./invoicesystem/:/invweb/
+    tty: true

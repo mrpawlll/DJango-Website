@@ -10,4 +10,4 @@ ALTER ROLE django SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE djangowebsite TO django;
 EOSQL
 
-psql -U $POSTGRES_USER djangowebsite < /docker-entrypoint-initdb.d/dbexportfrom.pgsql
+psql -U $POSTGRES_USER djangowebsite < /docker-entrypoint-initdb.d/01_dbexportfrom.pgsql

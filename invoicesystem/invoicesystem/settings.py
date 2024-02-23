@@ -32,6 +32,7 @@ with open('./invoicesystem/secret_key.txt') as f:
 ALLOWED_HOSTS = ['*']
 
 
+
 # Application definition
 
 LOGIN_URL = 'login:login'
@@ -96,7 +97,7 @@ DATABASES = {
         "NAME": "djangowebsite",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "127.0.0.1",
+        "HOST": "postdb",
         "PORT": "5432",
     }
 }
@@ -153,6 +154,6 @@ ASGI_APPLICATION = 'invoicesystem.asgi.application'
 #Redirect to https for http requests
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# SSL_REDIRECT = True
