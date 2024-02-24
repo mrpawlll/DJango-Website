@@ -12,13 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from django.urls import reverse_lazy
-
-import os
-import mimetypes
 # mimetypes.add_type("text/css", ".css", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,10 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 with open('./invoicesystem/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
-
-ALLOWED_HOSTS = ['*']
-
-
 
 # Application definition
 
@@ -84,25 +78,6 @@ TEMPLATES = [
     },
 ]
 
-
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "djangowebsite",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "postdb",
-        "PORT": "5432",
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -147,13 +122,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #ASGI setup
 ASGI_APPLICATION = 'invoicesystem.asgi.application'
-
-
-
-#Security Settings
-#Redirect to https for http requests
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-# SSL_REDIRECT = True

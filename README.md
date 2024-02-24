@@ -110,3 +110,50 @@ Once that is done, start importing the content of dbexportfrom.pgsql to your Pos
 ```
 psql -U postgres djangowebsite < /docker-entrypoint-initdb.d/dbexportfrom.pgsql
 ```
+
+
+## Differences in Production and Development
+
+To run the server in development mode, run:
+
+```
+python manage.py runserver
+```
+
+To run the server in production mode, run:
+
+```
+daphne -e ssl:port=8000:privateKey=./certificates/key.pem:certKey=./certificates/crt.pem invoicesystem.asgi:application
+```
+
+### Settings File in Development
+Key differences are that in development mode, the setting file that is used is called `settings_dev.py`. This variable is set inside `manage.py`.
+
+```
+...
+def main():
+    """Run administrative tasks."""
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'invoicesystem.settings_dev')
+...
+```
+
+Since we're running the development server using the command `python manage.py runserver`, the settings file is set inside of `manage.py`. 
+
+### Settings File in Production
+Whereas in production mode, we are running the server by executing:
+
+```
+daphne -e ssl:port=8000:privateKey=./certificates/key.pem:certKey=./certificates/crt.pem invoicesystem.asgi:application
+```
+
+Therefore, the settings file to be used is set inside `asgi.py`. This is the content of `asgi.py`.
+
+```
+import os
+
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'invoicesystem.settings_prod')
+
+application = get_asgi_application()
+```
