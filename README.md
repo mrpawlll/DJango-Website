@@ -1,6 +1,6 @@
 # Invoicing System
 ## Description
-This was an assignment given in my Computer Science course for a subject named Software Engineering Fundamentals. We were tasked to create an invoicing system website. This website was used multiple times throughout different subjects to be continuosly improved.
+This was an assignment given in my Computer Science course for a subject named Software Engineering Fundamentals. We were tasked to create an invoicing system website. This website was used multiple times throughout different subjects to be continuosly improved. This project is also made as a learning experience too, therefore information of changes made to project will also be given.
 
 ## System requirement <br>
 Python 3.12.1 <br>
@@ -157,3 +157,75 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'invoicesystem.settings_prod')
 
 application = get_asgi_application()
 ```
+
+## Commits information
+
+### 876e5dc283
+The way webpages work in Django is:
+
+User request for webpage -> Django checks in url.py -> Django calls the view for said url -> View function retrieves data or performs processing -> View function renders the template ->
+Rendered HTML sent back to user's browser as HTTP Response
+
+Typically, form-handling is done in 'View function retrieves data or performs processing'. So in forms.py, we define the fields that the view is supposed to render. 
+Let's take the Salesmans' view to create Delivery Order forms `def createDeliveryOrder`. In `def createDeliveryOrder`, the form is instantiated by calling it from `forms.py`.
+
+views.py of deliveryorder app:
+```
+def createDeliveryOrder(request):
+    submitted = False
+    deliveryorderid = DeliveryOrderForm.objects.order_by('-deliveryorderid')[:1]
+    template_name = 'deliveryorder/create.html'
+    form = DOForm()
+...
+```
+
+In `forms.py`, we declare the metadata of DOForm, so as to tell what data should the form have. This can be seen in `class Meta`. We want to override the `def __init__` for the form because
+we want to make `deliveryorderdate` field to be uneditable.
+
+content of DOForm in deliveryorder/forms.py:
+```
+class DOForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(DOForm, self).__init__(*args, **kwargs)
+        self.fields['deliveryorderdate'].widget.attrs['readonly'] = True
+
+    class Meta:
+        model = DeliveryOrderForm
+        fields = [
+    'deliveryorderid',
+    'recipientname',
+    'recipientphone',
+    'recipientaddress',
+    'deliveryorderdate',
+    'itemid',
+    'itemprice',
+    'itemdescription',
+    'itemquantity',]
+```
+
+This is also done in other forms:
+
+content of approveDOForm in deliveryorder/forms.py
+```
+class approveDOForm(ModelForm):
+    def __init__(self, *args, **kwargs):    
+        super(approveDOForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['readonly'] = True
+
+    class Meta:
+        model = DeliveryOrderForm
+        fields = [
+    'recipientname',
+    'recipientphone',
+    'recipientaddress',
+    'deliveryorderdate',
+    'itemid',
+    'itemprice',
+    'itemdescription',
+    'itemquantity',
+    'deliveryorderstatus']
+```
+
+As shown above, we iterate through fields.values() to edit the widget.attrs['readonly'] of each field to be *True*. By assumption, `deliveryorderstatus` would be uneditable, but no. This is because `deliveryorderstatus` is of type `models.IntegerChoices`. Therefore, when displaying the form, the field `deliveryorderstatus` will be of type dropdown. This types of HTML tags cannot be set with `readonly`. This
+works perfectly with our application demand, but it's behaviour should be noted in the future.
