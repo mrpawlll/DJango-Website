@@ -11,6 +11,10 @@ from .models import DeliveryOrderForm
 
      
 class DOForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(DOForm, self).__init__(*args, **kwargs)
+        self.fields['deliveryorderdate'].widget.attrs['readonly'] = True
+
     class Meta:
         model = DeliveryOrderForm
         fields = [
@@ -23,8 +27,18 @@ class DOForm(ModelForm):
     'itemprice',
     'itemdescription',
     'itemquantity',]
+        
 
 class approveDOForm(ModelForm):
+    def __init__(self, *args, **kwargs):    
+        super(approveDOForm, self).__init__(*args, **kwargs)
+        # set every field to be readonly, but deliveryorderstatus field is not set as readonly due to it's value not being set before this
+        # you can view the def approveDetails() where we populate this form with form = approveDOForm(instance=delivery), which is taking data only when
+        # salesman first create the form. salesman did not select anything for deliveryorderstatus, thus this value is editable although
+        # in our __init__ we set every self.fields.values to be readonly
+        for field in self.fields.values():
+            field.widget.attrs['readonly'] = True
+
     class Meta:
         model = DeliveryOrderForm
         fields = [
@@ -39,6 +53,11 @@ class approveDOForm(ModelForm):
     'deliveryorderstatus']
 
 class courierForm(ModelForm):
+    def __init__(self, *args, **kwargs):    
+        super(courierForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['readonly'] = True
+
     class Meta:
         model = DeliveryOrderForm
         fields = [
@@ -54,6 +73,11 @@ class courierForm(ModelForm):
     'courierstatus']
 
 class invoiceForm(ModelForm):
+    def __init__(self, *args, **kwargs):    
+        super(invoiceForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['readonly'] = True
+
     class Meta:
         model = DeliveryOrderForm
         fields = [
@@ -69,6 +93,11 @@ class invoiceForm(ModelForm):
     'invoicecreated']
 
 class approveInvoiceForm(ModelForm):
+    def __init__(self, *args, **kwargs):    
+        super(approveInvoiceForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['readonly'] = True
+
     class Meta:
         model = DeliveryOrderForm
         fields = [
